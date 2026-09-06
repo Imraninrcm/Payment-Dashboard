@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        <%= laborer.name %>
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        <%= laborer.name %>
+    </h1>
+
+
+    <div class="laborer-details">
+
+        <p>
+
+            <strong>
+                Laborer ID:
+            </strong>
+
+            #<%= laborer.laborerId %>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Contact:
+            </strong>
+
+            <%= laborer.contactInfo || "-" %>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Job Role:
+            </strong>
+
+            <%= laborer.jobRole || "-" %>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Joining Date:
+            </strong>
+
+            <%= new Date(
+                laborer.joiningDate
+            ).toLocaleDateString("en-IN") %>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Address:
+            </strong>
+
+            <%= laborer.address || "-" %>
+
+        </p>
+
+    </div>
+
+
+    <hr>
+
+
+    <h2>
+        Payment History
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Amount
+                </th>
+
+                <th>
+                    Remarks
+                </th>
+
+                <th>
+                    Slip
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <% payments.forEach(payment => { %>
+
+                <tr>
+
+                    <td>
+
+                        <%= new Date(
+                            payment.paymentDate
+                        ).toLocaleDateString("en-IN") %>
+
+                    </td>
+
+
+                    <td>
+
+                        ₹ <%= Number(
+                            payment.amount
+                        ).toLocaleString("en-IN") %>
+
+                    </td>
+
+
+                    <td>
+
+                        <%= payment.remarks %>
+
+                    </td>
+
+
+                    <td>
+
+                        <a
+                            href="/payments/<%= payment._id %>/slip"
+                        >
+                            View Slip
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+
+    <br>
+
+
+    <a href="/">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

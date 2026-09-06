@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Labor Payment Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        Labor Payment Dashboard
+    </h1>
+
+
+    <!-- ACTION BUTTONS -->
+
+    <div class="actions">
+
+        <a href="/laborers/add">
+            + Add Laborer
+        </a>
+
+        <a href="/payments/add">
+            + Add Payment
+        </a>
+
+    </div>
+
+
+    <!-- ====================================
+         LABORERS
+    ===================================== -->
+
+    <h2>
+        Laborers
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    ID
+                </th>
+
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Contact
+                </th>
+
+                <th>
+                    Job Role
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <% laborers.forEach(laborer => { %>
+
+                <tr>
+
+                    <td>
+                        #<%= laborer.laborerId %>
+                    </td>
+
+                    <td>
+                        <%= laborer.name %>
+                    </td>
+
+                    <td>
+                        <%= laborer.contactInfo || "-" %>
+                    </td>
+
+                    <td>
+                        <%= laborer.jobRole || "-" %>
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="/laborers/<%= laborer._id %>"
+                        >
+                            View
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- ====================================
+         PAYMENT HISTORY
+    ===================================== -->
+
+    <h2>
+        Recent Payments
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Laborer
+                </th>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Amount
+                </th>
+
+                <th>
+                    Remarks
+                </th>
+
+                <th>
+                    Slip
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <% payments.forEach(payment => { %>
+
+                <tr>
+
+                    <td>
+
+                        #<%= payment.laborerId.laborerId %>
+
+                        -
+
+                        <%= payment.laborerId.name %>
+
+                    </td>
+
+
+                    <td>
+
+                        <%= new Date(
+                            payment.paymentDate
+                        ).toLocaleDateString("en-IN") %>
+
+                    </td>
+
+
+                    <td>
+
+                        ₹ <%= Number(
+                            payment.amount
+                        ).toLocaleString("en-IN") %>
+
+                    </td>
+
+
+                    <td>
+
+                        <%= payment.remarks %>
+
+                    </td>
+
+
+                    <td>
+
+                        <a
+                            href="/payments/<%= payment._id %>/slip"
+                        >
+                            Print Slip
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
