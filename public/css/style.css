@@ -1,184 +1,273 @@
+:root {
+  --ink: #172235;
+  --muted: #68758a;
+  --paper: #ffffff;
+  --canvas: #eef3f7;
+  --line: #dce5ec;
+  --blue: #2563eb;
+  --blue-dark: #1745ad;
+  --teal: #0f9f9a;
+  --coral: #f97362;
+  --shadow: 0 18px 45px rgba(30, 51, 78, 0.09);
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  min-height: 100vh;
   margin: 0;
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  background: #f5f5f5;
-
-  color: #222;
+  padding: 32px 20px;
+  font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(circle at 10% 0%, #d9edf3 0, transparent 34%), var(--canvas);
+  color: var(--ink);
 }
-
-/* ========================================
-   CONTAINER
-======================================== */
 
 .container {
   width: 100%;
-
-  max-width: 1100px;
-
-  margin: 30px auto;
-
-  padding: 25px;
-
-  background: white;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
 }
 
-/* ========================================
-   HEADINGS
-======================================== */
+h1,
+h2 {
+  letter-spacing: -0.03em;
+}
 
 h1 {
-  margin-top: 0;
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
 }
 
 h2 {
-  margin-top: 30px;
+  margin: 42px 0 14px;
+  font-size: 1.35rem;
 }
 
-/* ========================================
-   FORMS
-======================================== */
+p {
+  line-height: 1.6;
+}
+
+a {
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+
+.page-intro {
+  color: var(--muted);
+  margin: 0 0 28px;
+}
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-
-  font-weight: bold;
-
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 input,
 select,
 textarea {
   width: 100%;
-
-  padding: 10px;
-
-  border: 1px solid #ccc;
-
-  border-radius: 4px;
-
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fbfdff;
+  color: var(--ink);
+  font: inherit;
   font-size: 15px;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
 textarea {
+  min-height: 110px;
   resize: vertical;
 }
 
-/* ========================================
-   BUTTON
-======================================== */
-
-button {
-  padding: 10px 20px;
-
-  border: none;
-
-  background: #222;
-
-  color: white;
-
+button,
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--blue);
+  color: #fff;
   cursor: pointer;
-
-  border-radius: 4px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
 }
 
-button:hover {
-  background: #444;
+button:hover,
+.actions a:hover {
+  background: var(--blue-dark);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.2);
+  transform: translateY(-1px);
 }
-
-/* ========================================
-   ACTIONS
-======================================== */
 
 .actions {
   display: flex;
-
-  gap: 10px;
-
-  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 26px 0 8px;
 }
 
-.actions a {
-  display: inline-block;
-
-  padding: 10px 15px;
-
-  background: #222;
-
-  color: white;
-
-  text-decoration: none;
-
-  border-radius: 4px;
+.actions a:last-child {
+  background: var(--teal);
 }
 
-.actions a:hover {
-  background: #444;
+.actions a:last-child:hover {
+  background: #087b77;
 }
 
-/* ========================================
-   TABLE
-======================================== */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
 
 table {
   width: 100%;
-
+  min-width: 650px;
   border-collapse: collapse;
-
-  margin-top: 15px;
+  background: var(--paper);
 }
 
 th,
 td {
-  padding: 10px;
-
-  border: 1px solid #ddd;
-
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--line);
   text-align: left;
-
   vertical-align: top;
 }
 
+tr:last-child td {
+  border-bottom: 0;
+}
+
 th {
-  background: #f0f0f0;
+  background: #f4f8fb;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-/* ========================================
-   LINKS
-======================================== */
-
-a {
-  color: #222;
+td a {
+  color: var(--blue-dark);
 }
 
-/* ========================================
-   MOBILE
-======================================== */
+.form-card,
+.laborer-details,
+.total-payment {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fbfdff;
+}
+
+.form-card {
+  max-width: 700px;
+  margin-top: 26px;
+}
+
+.laborer-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 24px;
+  margin: 24px 0;
+}
+
+.laborer-details p {
+  margin: 8px 0;
+}
+
+.total-payment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin: 20px 0 28px;
+  border-color: #bfe8e4;
+  background: #effbf9;
+}
+
+.total-payment p {
+  margin: 0;
+}
+
+hr {
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
 
 @media (max-width: 700px) {
+  body {
+    padding: 12px;
+  }
+
   .container {
-    margin: 0;
-
-    padding: 15px;
+    padding: 24px 18px;
+    border-radius: 16px;
   }
 
-  table {
-    display: block;
-
-    overflow-x: auto;
+  h2 {
+    margin-top: 32px;
   }
 
-  .actions {
-    flex-direction: column;
+  .actions,
+  .actions a {
+    width: 100%;
+  }
+
+  .laborer-details {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .form-card,
+  .total-payment {
+    padding: 18px;
+  }
+}
+
+@media print {
+  body {
+    padding: 0;
+    background: #fff;
+  }
+
+  .container {
+    box-shadow: none;
   }
 }
