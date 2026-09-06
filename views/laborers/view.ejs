@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,6 +100,66 @@
     </h2>
 
 
+    <%
+    // Calculate total payment made to the laborer
+    const totalPayment = payments.reduce(
+        (total, payment) => total + Number(payment.amount || 0),
+        0
+    );
+
+
+    // Get current month and year
+    const now = new Date();
+
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+
+    // Calculate payment made during the current month
+    const monthlyPayment = payments.reduce(
+        (total, payment) => {
+
+            const paymentDate = new Date(payment.paymentDate);
+
+            if (
+                paymentDate.getMonth() === currentMonth &&
+                paymentDate.getFullYear() === currentYear
+            ) {
+                return total + Number(payment.amount || 0);
+            }
+
+            return total;
+        },
+        0
+    );
+%>
+
+
+<div class="total-payment">
+
+    <p>
+        <strong>
+            Total Payment Done:
+        </strong>
+
+        ₹ <%= totalPayment.toLocaleString("en-IN") %>
+    </p>
+
+
+    <p>
+        <strong>
+            Payment Done This Month:
+        </strong>
+
+        ₹ <%= monthlyPayment.toLocaleString("en-IN") %>
+    </p>
+
+</div>
+
+
+    <br>
+
+
     <table>
 
         <thead>
@@ -188,3 +249,4 @@
 </body>
 
 </html>
+
